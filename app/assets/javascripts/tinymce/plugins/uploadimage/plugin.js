@@ -43,16 +43,18 @@
         win = editor.windowManager.open(
           {
             title: ed.translate('Insert an image from your computer'),
-            width: 520 + parseInt(editor.getLang('uploadimage.delta_width', 0), 10),
-            height: 180 + parseInt(editor.getLang('uploadimage.delta_height', 0), 10),
+            width: 520 + parseInt(editor.translate('uploadimage.delta_width', 0), 10),
+            height: 180 + parseInt(editor.translate('uploadimage.delta_height', 0), 10),
             body: body,
             buttons: [
               {
+                type: 'custom',
                 text: ed.translate('Insert'),
                 onclick: insertImage,
                 subtype: 'primary'
               },
               {
+                type: 'custom',
                 text: ed.translate('Cancel'),
                 onclick: ed.windowManager.close
               }
@@ -302,18 +304,18 @@
 
       if (editor.getParam('uploadimage', true)) {
         // Add a button that opens a window
-        editor.addButton('uploadimage', {
+        editor.ui.registry.addButton('uploadimage', {
           tooltip: ed.translate('Insert an image from your computer'),
           icon: 'image',
-          onclick: showDialog
+          onAction: showDialog
         });
 
         // Adds a menu item to the tools menu
-        editor.addMenuItem('uploadimage', {
+        editor.ui.registry.addMenuItem('uploadimage', {
           text: ed.translate('Insert an image from your computer'),
           icon: 'image',
           context: 'insert',
-          onclick: showDialog
+          onAction: showDialog
         });
       }
     }
